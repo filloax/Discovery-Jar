@@ -1,4 +1,6 @@
-package com.filloax.improvedcommands;
+package com.filloax.improvedcommands.command;
+
+import com.filloax.improvedcommands.util.JsonToNBT;
 
 import net.minecraft.block.Block;
 import net.minecraft.command.CommandBase;

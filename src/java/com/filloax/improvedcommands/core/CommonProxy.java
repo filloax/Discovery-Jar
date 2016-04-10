@@ -1,4 +1,11 @@
-package com.filloax.improvedcommands;
+package com.filloax.improvedcommands.core;
+
+import com.filloax.improvedcommands.Main;
+import com.filloax.improvedcommands.command.PlaySound;
+import com.filloax.improvedcommands.command.SetBlock;
+import com.filloax.improvedcommands.command.Summon;
+import com.filloax.improvedcommands.util.SoundPacket;
+import com.filloax.improvedcommands.util.SoundPacket.Handler;
 
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;

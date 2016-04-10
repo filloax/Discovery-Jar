@@ -1,5 +1,7 @@
 package com.filloax.improvedcommands;
 
+import com.filloax.improvedcommands.core.CommonProxy;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -23,7 +25,7 @@ public class Main {
     
     public static SimpleNetworkWrapper network;
     
-    @SidedProxy(clientSide="com.filloax.improvedcommands.ClientProxy", serverSide="com.filloax.improvedcommands.ServerProxy")
+    @SidedProxy(clientSide="com.filloax.improvedcommands.core.ClientProxy", serverSide="com.filloax.improvedcommands.core.ServerProxy")
     public static CommonProxy proxy;
      
     @EventHandler

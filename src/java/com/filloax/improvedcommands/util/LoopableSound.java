@@ -1,4 +1,4 @@
-package com.filloax.improvedcommands;
+package com.filloax.improvedcommands.util;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ITickableSound;

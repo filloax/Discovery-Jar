@@ -1,6 +1,6 @@
 //Credits to Tschallacka for translation http://www.minecraftforge.net/forum/index.php?topic=29852.0
 
-package com.filloax.improvedcommands;
+package com.filloax.improvedcommands.util;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;

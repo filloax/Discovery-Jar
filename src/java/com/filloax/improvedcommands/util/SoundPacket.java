@@ -1,4 +1,4 @@
-package com.filloax.improvedcommands;
+package com.filloax.improvedcommands.util;
 
 import java.util.HashMap;
 import java.util.Map;

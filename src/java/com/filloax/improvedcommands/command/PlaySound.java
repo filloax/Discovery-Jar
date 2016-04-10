@@ -1,4 +1,7 @@
-package com.filloax.improvedcommands;
+package com.filloax.improvedcommands.command;
+
+import com.filloax.improvedcommands.Main;
+import com.filloax.improvedcommands.util.SoundPacket;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
