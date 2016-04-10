@@ -1,0 +1,2 @@
+commands.playsound2.usage=/playsound2 sound <mode> <player> <x> <y> <z> <vol> <pitch>
+commands.playsound2.success=Sound played

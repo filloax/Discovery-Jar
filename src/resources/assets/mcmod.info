@@ -1,0 +1,16 @@
+[
+{
+  "modid": "1.8commands",
+  "name": "1.8 Command JSON",
+  "description": "Adds commands that have the 1.8 JSon format with string IDs, and /playrecord.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Filloax"],
+  "credits": "Filloax",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
