@@ -51,29 +51,34 @@ public class SoundBackgroundPacket implements IMessage {
 	
 	public static class Handler implements IMessageHandler<SoundBackgroundPacket, IMessage> {
 
-	    private BackgroundSound playingsound;    
+	    private final Map<String, BackgroundSound> mapSoundNames = new HashMap<String, BackgroundSound>();    
 		
 		@Override
 		public IMessage onMessage(SoundBackgroundPacket m, MessageContext ctx) {
 //			System.out.println(m.sound+";"+m.mode+";"+m.vol+";"+m.pitch);
+			
+    		ResourceLocation resource = new ResourceLocation(m.sound);
+    		
+    		//get the sound with domain in front of it, else it could not have it
+    		//if it was from minecraft: (ex. door -> minecraft:door)
+	    	BackgroundSound oldsound = mapSoundNames.get(resource.toString()); 
 	    	
-	    	if (playingsound != null && !m.mode.equals("lowPr")) {
+	    	if (oldsound != null) {
 //				System.out.println("Old sound:"+oldsound.getName()+",repeat:"+oldsound.getRepeat()+",done:"+oldsound.isDonePlaying()+";stopping.");
-	    		playingsound.stop();
+	    		oldsound.stop();
+	    		mapSoundNames.remove(resource.toString());
 	    	}
 	    	if (!m.mode.equals("stop")) { 
 //	    		System.out.println("Playing sound at " + m.x + "/" + m.y + "/" + m.z + ": " + m.sound);
-	    		ResourceLocation resource = new ResourceLocation(m.sound);
-	    		
-		    	if (m.mode.equals("normal") || (m.mode.equals("lowPr") && (playingsound == null || Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(playingsound)))) {
-		    		BackgroundSound sound = new BackgroundSound(resource, m.vol, m.pitch, false, m.delay);
-		    		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
-		    		playingsound = sound;
-		    	} else if (m.mode.equals("loop")) {
-		    		BackgroundSound sound = new BackgroundSound(resource, m.vol, m.pitch, true, m.delay);  
-		    		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
-		    		playingsound = sound;
+	    		BackgroundSound sound;
+		    	if (m.mode.equals("loop")) {
+		    		sound = new BackgroundSound(resource, m.vol, m.pitch, true, m.delay);
+		    	} else {
+		    		sound = new BackgroundSound(resource, m.vol, m.pitch, false, m.delay);  
 		    	}
+	    		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+	    		mapSoundNames.put(resource.toString(), sound);
+
 	    	}
 			return null;
 		}

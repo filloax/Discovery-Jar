@@ -10,7 +10,9 @@ This mod adds 4 commands:
 normal plays the sound and stop the one that was running in the same position
 stop stops the one running in the same position and ingores the sound argument in the command
 loop plays the sound and loops it when finished, also stops the old sound like above
-lowPr (low priority) plays the sound only if the old one ahs been stopped/if no sound has been played in that position
-delay is teh delay between each loop
+delay is the delay between each loop
 
-/playsoundb : plays the sound in the background, regardless of position. has a mode and delay arguments that work like /playsound2
+/playsoundb : plays the sound in the background, regardless of position.
+The mode and delay arguments are like in /playsound2, except the sounds are stopped not with the coordinates, but with the soundname
+(e.g. to stop records.cat you have to do /playsoundb records.cat stop)
+Also the default player here is @p, not @a like in /playsound2

@@ -17,9 +17,9 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0 MC1.7.10"
+version = "1.7.10-1.0"
 group= "com.filloax.improvedcommands" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "improvedcommands"
+archivesBaseName = "Improved Commands"
 
 sourceSets {
     main {

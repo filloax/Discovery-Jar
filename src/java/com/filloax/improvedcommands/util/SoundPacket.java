@@ -68,28 +68,28 @@ public class SoundPacket implements IMessage {
 		@Override
 		public IMessage onMessage(SoundPacket m, MessageContext ctx) {
 //			System.out.println(m.sound+";"+m.mode+";"+m.x+";"+m.y+";"+m.z+";"+m.vol+";"+m.pitch);
-	    	
+			
+    		ResourceLocation resource = new ResourceLocation(m.sound);
+
 			ChunkCoordinates chunkcoordinates = new ChunkCoordinates(m.x, m.y, m.z);
 			LoopableSound oldsound = mapSoundPositions.get(chunkcoordinates);
-	    	if (oldsound != null && !m.mode.equals("lowPr")) {
+			
+	    	if (oldsound != null) {
 //				System.out.println("Old sound:"+oldsound.getName()+",repeat:"+oldsound.getRepeat()+",done:"+oldsound.isDonePlaying()+";stopping.");
 	    		oldsound.stop();
 	    		mapSoundPositions.remove(chunkcoordinates);
 	    	}
 	    	if (!m.mode.equals("stop")) { 
-	    		LoopableSound sound = null;
 //	    		System.out.println("Playing sound at " + m.x + "/" + m.y + "/" + m.z + ": " + m.sound);
-	    		ResourceLocation resource = new ResourceLocation(m.sound);
-	    		
-		    	if (m.mode.equals("normal") || (m.mode.equals("lowPr") && (oldsound == null || Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(oldsound)))) {
-		    		sound = new LoopableSound(resource, m.vol, m.pitch, m.x, m.y, m.z, false, m.delay);
-		    		mapSoundPositions.put(chunkcoordinates, sound);
-		    		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
-		    	} else if (m.mode.equals("loop")) {
-		    		sound = new LoopableSound(resource, m.vol, m.pitch, m.x, m.y, m.z, true, m.delay);  
-		    		mapSoundPositions.put(chunkcoordinates, sound);
-		    		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+	    		LoopableSound sound;
+		    	if (m.mode.equals("loop")) {
+		    		sound = new LoopableSound(resource, m.vol, m.pitch, m.x, m.y, m.z, true, m.delay);
+		    	} else {
+		    		sound = new LoopableSound(resource, m.vol, m.pitch, m.x, m.y, m.z, false, m.delay);  
 		    	}
+	    		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+	    		mapSoundPositions.put(chunkcoordinates, sound);
+
 	    	}
 			return null;
 		}
