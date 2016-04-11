@@ -1,2 +1,2 @@
-commands.playsound2.usage=/playsound2 sound <mode> <player> <x> <y> <z> <vol> <pitch>
-commands.playsound2.success=Sound played
+commands.playsound2.usage=/playsound2 sound <mode> <player> <x> <y> <z> <vol> <pitch> <delay> ; mode can be normal(def), stop, loop, lowPr
+commands.playsoundb.usage=/playsoundb sound <mode> <player> <vol> <pitch> <delay> ; mode can be normal(def), stop, loop, lowPr
