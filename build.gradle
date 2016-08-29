@@ -18,8 +18,8 @@ buildscript {
 apply plugin: 'forge'
 
 version = "1.7.10-1.0"
-group= "com.filloax.improvedcommands" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Improved Commands"
+group= "com.filloax.discoveryjar" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Discovery Jar"
 
 sourceSets {
     main {

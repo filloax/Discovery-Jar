@@ -1,8 +1,8 @@
 [
 {
-  "modid": "improvedcommands",
-  "name": "Improved Commands",
-  "description": "Adds various commands.",
+  "modid": "discoveryjar",
+  "name": "Discovery Jar",
+  "description": "Jar mod for the Discovery Modpack.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
