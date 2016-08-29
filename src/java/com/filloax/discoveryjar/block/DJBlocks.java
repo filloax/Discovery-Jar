@@ -11,9 +11,11 @@ public final class DJBlocks {
 	
 	}
 	
-	public static Block mazeBlock;
+	public static Block maze;
+	public static Block golemGen;
 
 	public static void init() {
-		GameRegistry.registerBlock(mazeBlock = new BlockMaze(), ItemBlockMeta.class, "mazeBlock");
+		GameRegistry.registerBlock(maze = new BlockMaze(), ItemBlockMeta.class, "maze");
+		GameRegistry.registerBlock(maze = new BlockGolemGen(), ItemBlockMeta.class, "golemGen");
 	}
 }

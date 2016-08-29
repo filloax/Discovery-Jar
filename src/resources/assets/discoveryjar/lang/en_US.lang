@@ -1,4 +1,21 @@
-tile.mazeBlock_0.name=Maze Sandstone Bricks
-tile.mazeBlock_1.name=Maze Sandstone Bricks
-tile.mazeBlock_2.name=Maze Sandstone Bricks
-tile.mazeBlock_3.name=Maze Yellow Clay
+tile.maze_0.name=Maze Sandstone Bricks
+tile.maze_1.name=Maze Sandstone Bricks
+tile.maze_2.name=Maze Sandstone Bricks
+tile.maze_3.name=Maze Yellow Clay
+
+tile.golemGen_0.name=Clockwork Golem Factory (100%)
+tile.golemGen_1.name=Clockwork Golem Factory (93%)
+tile.golemGen_2.name=Clockwork Golem Factory (87%)
+tile.golemGen_3.name=Clockwork Golem Factory (81%)
+tile.golemGen_4.name=Clockwork Golem Factory (75%)
+tile.golemGen_5.name=Clockwork Golem Factory (69%)
+tile.golemGen_6.name=Clockwork Golem Factory (62%)
+tile.golemGen_7.name=Clockwork Golem Factory (56%)
+tile.golemGen_8.name=Clockwork Golem Factory (50%)
+tile.golemGen_9.name=Clockwork Golem Factory (44%)
+tile.golemGen_10.name=Clockwork Golem Factory (38%)
+tile.golemGen_11.name=Clockwork Golem Factory (32%)
+tile.golemGen_12.name=Clockwork Golem Factory (26%)
+tile.golemGen_13.name=Clockwork Golem Factory (22%)
+tile.golemGen_14.name=Clockwork Golem Factory (16%)
+tile.golemGen_15.name=Clockwork Golem Factory (8%)

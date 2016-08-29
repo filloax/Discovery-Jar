@@ -28,12 +28,12 @@ public class BlockMaze extends Block {
 	 *      2:Sandstone bricks, cracked
 	 *      3:Yellow clay
 	 */
-	public static IIcon[] ICONS = new IIcon[4];
+	public static IIcon[] icons = new IIcon[4];
 	
 	public BlockMaze() {
         super(Material.rock);
         this.setHardness(2F);
-        this.setBlockName("mazeBlock"); 
+        this.setBlockName("maze"); 
         this.setResistance(Float.MAX_VALUE);
         this.setStepSound(Block.soundTypeStone);
 		this.setCreativeTab(CreativeTabs.tabBlock);
@@ -47,7 +47,7 @@ public class BlockMaze extends Block {
 		if (meta > 3) {
 			return this.getIcon(side,0);
 		} else {
-			return ICONS[meta];
+			return icons[meta];
 		}
 	}
 
@@ -55,10 +55,10 @@ public class BlockMaze extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister)
 	{
-		ICONS[0] = iconRegister.registerIcon("geostrata:sandstone_b");
-		ICONS[1] = iconRegister.registerIcon(Main.MODID + ":sandstone_moss");
-		ICONS[2] = iconRegister.registerIcon(Main.MODID + ":sandstone_crack");
-		ICONS[3] = iconRegister.registerIcon("minecraft:hardened_clay_stained_yellow");
+		icons[0] = iconRegister.registerIcon("geostrata:sandstone_b");
+		icons[1] = iconRegister.registerIcon(Main.MODID + ":sandstone_moss");
+		icons[2] = iconRegister.registerIcon(Main.MODID + ":sandstone_crack");
+		icons[3] = iconRegister.registerIcon("minecraft:hardened_clay_stained_yellow");
 	}
 	
 	/**
