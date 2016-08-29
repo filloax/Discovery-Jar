@@ -12,13 +12,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-/* Works as pickaxe, shovel and axe, but only on maze blocks.
- * 
- */
+
 public class ItemMazebreaker extends ItemTool {
 
 	private static String unlocName = "mazebreaker";
-	private static Set effectiveOn = Sets.newHashSet(new Block[] {DJBlocks.maze});
+	private static Set effectiveOn = Sets.newHashSet(new Block[] {DJBlocks.mazeBlock});
 	
 	public ItemMazebreaker(ToolMaterial material) {
 		//This should only be effective with maze blocks

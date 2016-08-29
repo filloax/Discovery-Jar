@@ -9,5 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
 public class EventSubscriber {
-
+	/* Manage maze blocks
+	 * Make them only rbeakable with mazebreaker
+	 */
 }
