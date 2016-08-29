@@ -136,10 +136,11 @@ public class BlockMaze extends Block {
 	@Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest)
     {
-    	if (willHarvest) {
+    	if (willHarvest || player.capabilities.isCreativeMode) {
         	return super.removedByPlayer(world, player, x, y, z, willHarvest);
         } else {
-          	player.getCurrentEquippedItem().damageItem(16, player);
+        	ItemStack item = player.getCurrentEquippedItem();
+          	if (item != null && item.getItem() instanceof ItemTool) item.damageItem(16, player);
         	return false;
         }
     }

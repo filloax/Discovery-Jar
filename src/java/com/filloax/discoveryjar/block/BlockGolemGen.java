@@ -92,7 +92,7 @@ public class BlockGolemGen extends Block {
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest)
     {
 		int meta = world.getBlockMetadata(x, y, z);
-    	if (meta == 15) {
+    	if (meta == 15 || player.capabilities.isCreativeMode) {
         	return super.removedByPlayer(world, player, x, y, z, willHarvest);
         } else {
           	world.setBlockMetadataWithNotify(x, y, z, meta+1, 3);
