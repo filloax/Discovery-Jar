@@ -21,7 +21,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class MazeBlock extends Block {
+public class BlockMaze extends Block {
 
 	/* META 0:Sandstone bricks
 	 *      1:Sandstone bricks, mossy
@@ -30,7 +30,7 @@ public class MazeBlock extends Block {
 	 */
 	public static IIcon[] ICONS = new IIcon[4];
 	
-	public MazeBlock() {
+	public BlockMaze() {
         super(Material.rock);
         this.setHardness(2F);
         this.setBlockName("mazeBlock"); 
