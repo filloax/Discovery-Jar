@@ -1,6 +1,6 @@
 package com.filloax.discoveryjar.core;
 
-import com.filloax.discoveryjar.block.BlockMaze;
+import com.filloax.discoveryjar.block.MazeBlock;
 import com.filloax.discoveryjar.item.ItemMazebreaker;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

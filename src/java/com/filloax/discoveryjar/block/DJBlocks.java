@@ -14,6 +14,6 @@ public final class DJBlocks {
 	public static Block mazeBlock;
 
 	public static void init() {
-		GameRegistry.registerBlock(mazeBlock = new BlockMaze(), ItemBlockMeta.class, "mazeBlock");
+		GameRegistry.registerBlock(mazeBlock = new MazeBlock(), ItemBlockMeta.class, "mazeBlock");
 	}
 }
