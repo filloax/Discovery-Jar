@@ -19,6 +19,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMaze extends Block {
@@ -28,8 +30,12 @@ public class BlockMaze extends Block {
 	 *      2:Sandstone bricks, cracked
 	 *      3:Yellow clay
 	 */
-	public static IIcon[] icons = new IIcon[4];
-	
+	/* ICONS:
+	 * until 3: Same as meta
+	 * 3-8: Yellow clay
+	 */
+	public static IIcon[] icons = new IIcon[9];
+		
 	public BlockMaze() {
         super(Material.rock);
         this.setHardness(2F);
@@ -39,10 +45,15 @@ public class BlockMaze extends Block {
 		this.setCreativeTab(CreativeTabs.tabBlock);
 	}
 	
+	public static double ctmNoise(int x, int y , int z) {
+		return Math.abs((2*x+3*y+z)*(x+0.1)*(y+0.3)*(z+0.2)*100)%100;
+	}
+	
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-	@Override
+    @SideOnly(Side.CLIENT)
+    @Override
 	public IIcon getIcon(int side, int meta) {
 		if (meta > 3) {
 			return this.getIcon(side,0);
@@ -50,6 +61,38 @@ public class BlockMaze extends Block {
 			return icons[meta];
 		}
 	}
+    
+//    If the block is one of the first maze blocks, use the old icon method
+//    (too much of a hassle to change the whole dungeon again lol)
+//    Else, get the texture depending on position (random texture)
+    
+    //percent each alternate texture has of being used
+    public static int ALT_TEX_PERCENT_CLAY = 7; 
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+    	int meta = world.getBlockMetadata(x, y, z);
+    	switch (meta) {
+    		case 3: 
+    			//This number is used to get the texture semi-randomly, but keeping it the
+    			//same in a given coord. It's a always-positive 2 digit double
+    			double a = ctmNoise(x, y, z);
+    			if (a < ALT_TEX_PERCENT_CLAY) 
+    				return icons[3];
+    			else if (a < ALT_TEX_PERCENT_CLAY*2)
+    				return icons[4];
+    			else if (a < ALT_TEX_PERCENT_CLAY*3)
+    				return icons[5];
+    			else if (a < ALT_TEX_PERCENT_CLAY*4)
+    				return icons[6];
+    			else if (a < ALT_TEX_PERCENT_CLAY*5)
+    				return icons[7];
+    			else 
+    				return icons[8];
+    		default: return this.getIcon(side, meta);
+   	}
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -58,7 +101,12 @@ public class BlockMaze extends Block {
 		icons[0] = iconRegister.registerIcon("geostrata:sandstone_b");
 		icons[1] = iconRegister.registerIcon(Main.MODID + ":sandstone_moss");
 		icons[2] = iconRegister.registerIcon(Main.MODID + ":sandstone_crack");
-		icons[3] = iconRegister.registerIcon("minecraft:hardened_clay_stained_yellow");
+		icons[3] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_web");
+		icons[4] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_crack1");
+		icons[5] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_crack2");
+		icons[6] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_crack3");
+		icons[7] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_moss");
+		icons[8] = iconRegister.registerIcon("minecraft:hardened_clay_stained_yellow");
 	}
 	
 	/**
@@ -141,7 +189,13 @@ public class BlockMaze extends Block {
         } else {
         	ItemStack item = player.getCurrentEquippedItem();
           	if (item != null && item.getItem() instanceof ItemTool) item.damageItem(16, player);
-        	return false;
+          	return false;
         }
     }
+	
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		return new ItemStack(this, 1, meta);
+	}
 }
