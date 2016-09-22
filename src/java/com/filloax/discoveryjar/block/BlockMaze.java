@@ -45,8 +45,29 @@ public class BlockMaze extends Block {
 		this.setCreativeTab(CreativeTabs.tabBlock);
 	}
 	
-	public static double ctmNoise(int x, int y , int z) {
+	@SideOnly(Side.CLIENT)
+	public static double texNoise(int x, int y , int z) {
 		return Math.abs((2*x+3*y+z)*(x+0.1)*(y+0.3)*(z+0.2)*100)%100;
+	}
+	
+	//get the variant icon number. varPercent is the percent a single variant has of happening
+	//start is the first icon number, the one of the normal icon
+	//variants is how many variants there are, including the normal one
+	@SideOnly(Side.CLIENT)
+	public static int getVariant(int x, int y, int z, int varPercent, int start, int variants) {
+		//This number is used to get the texture semi-randomly, but keeping it the
+		//same in a given coord. It's a always-positive 2 digit double
+		double a = texNoise(x, y, z);
+		int variant = start;
+		
+		for (int i=1;i<variants;i++) {
+			if (a < varPercent * i) {
+				variant += i;
+				break;
+			}
+		}
+		
+		return variant;
 	}
 	
     /**
@@ -75,21 +96,14 @@ public class BlockMaze extends Block {
     	int meta = world.getBlockMetadata(x, y, z);
     	switch (meta) {
     		case 3: 
-    			//This number is used to get the texture semi-randomly, but keeping it the
-    			//same in a given coord. It's a always-positive 2 digit double
-    			double a = ctmNoise(x, y, z);
-    			if (a < ALT_TEX_PERCENT_CLAY) 
+    			//The variant before checking the surrounding blocks
+    			int var = getVariant(x,y,z,ALT_TEX_PERCENT_CLAY,3,6);
+    			
+    			//if the block at teh same coords, but x-=1, y-=1 or z -=1 has the same variant,
+    			//use normal icon to prevent ugliness
+    			if (var == getVariant(x-1,y,z,ALT_TEX_PERCENT_CLAY,3,6) || var == getVariant(x,y-1,z,ALT_TEX_PERCENT_CLAY,3,6) || var == getVariant(x,y,z-1,ALT_TEX_PERCENT_CLAY,3,6))
     				return icons[3];
-    			else if (a < ALT_TEX_PERCENT_CLAY*2)
-    				return icons[4];
-    			else if (a < ALT_TEX_PERCENT_CLAY*3)
-    				return icons[5];
-    			else if (a < ALT_TEX_PERCENT_CLAY*4)
-    				return icons[6];
-    			else if (a < ALT_TEX_PERCENT_CLAY*5)
-    				return icons[7];
-    			else 
-    				return icons[8];
+    			return icons[var];
     		default: return this.getIcon(side, meta);
    	}
     }
@@ -101,12 +115,12 @@ public class BlockMaze extends Block {
 		icons[0] = iconRegister.registerIcon("geostrata:sandstone_b");
 		icons[1] = iconRegister.registerIcon(Main.MODID + ":sandstone_moss");
 		icons[2] = iconRegister.registerIcon(Main.MODID + ":sandstone_crack");
-		icons[3] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_web");
+		icons[3] = iconRegister.registerIcon("minecraft:hardened_clay_stained_yellow");
 		icons[4] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_crack1");
 		icons[5] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_crack2");
 		icons[6] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_crack3");
 		icons[7] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_moss");
-		icons[8] = iconRegister.registerIcon("minecraft:hardened_clay_stained_yellow");
+		icons[8] = iconRegister.registerIcon(Main.MODID + ":yellow_clay_web");
 	}
 	
 	/**
